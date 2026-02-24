@@ -1,0 +1,260 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1S8P59zAs11eVHB2ER-7Osm4DQrLBDfXNbv6L7lei0zw",
+          "mode": "list",
+          "cachedResultName": " خدمه العملاء العقاري",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S8P59zAs11eVHB2ER-7Osm4DQrLBDfXNbv6L7lei0zw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "الورقة1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S8P59zAs11eVHB2ER-7Osm4DQrLBDfXNbv6L7lei0zw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            " اسم عميل ": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('____________using_to_match_', `اضف اسم عميل  فقط `, 'string') }}",
+            "رقم موبايل ": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('___________', `اضف رقم موبايل فقط `, 'string') }}",
+            "نوع خدمه ": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('_________', `اضف نوع خدمه فقط `, 'string') }}",
+            "موعد ": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('_____', `اضف موعد فقط `, 'string') }}"
+          },
+          "matchingColumns": [
+            " اسم عميل "
+          ],
+          "schema": [
+            {
+              "id": " اسم عميل ",
+              "displayName": " اسم عميل ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "رقم موبايل ",
+              "displayName": "رقم موبايل ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "نوع خدمه ",
+              "displayName": "نوع خدمه ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "موعد ",
+              "displayName": "موعد ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "نوع عقار ",
+              "displayName": "نوع عقار ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        304,
+        112
+      ],
+      "id": "19354107-6058-493d-aa98-cf38766c95f2",
+      "name": "Append or update row in sheet in Google Sheets"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -208,
+        -80
+      ],
+      "id": "3549376e-7222-42d9-b0f9-143bf57631bc",
+      "name": "Telegram Trigger1",
+      "webhookId": "e9f18cec-2ccd-461b-97c0-ae918dbd56f9",
+      "credentials": {
+        "telegramApi": {
+          "id": "F0H7jyldSTmUhG55",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "1088590144",
+        "text": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "00b22baf-a5fb-4a79-b45d-cdcf294bc8ba",
+      "name": "Send a text message1",
+      "webhookId": "2dd75cf4-3cfe-4eea-993d-527407a76303",
+      "credentials": {
+        "telegramApi": {
+          "id": "F0H7jyldSTmUhG55",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        0,
+        112
+      ],
+      "id": "afe22cd8-9c8b-466d-bd52-2a384ef2442f",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "GSx8rTZafnaXfq6z",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "1088590144",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        160,
+        160
+      ],
+      "id": "b3959295-3ab8-436e-ac53-c114e779ca07",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        32,
+        -192
+      ],
+      "id": "4f4c940c-5786-44fb-a71b-1b48a02c82c5",
+      "name": "AI Agent1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Append or update row in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "eb8f4276-5ec8-4347-9137-696af98390a9",
+  "meta": {
+    "instanceId": "6e7354f2849377c9a01ebd200d5dabb16ea5c18459412a5b1b0411a7b069af78"
+  },
+  "id": "al0ULuYSWsud9gdu",
+  "tags": []
+}
