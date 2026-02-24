@@ -36,7 +36,6 @@ This system acts as a 24/7 virtual real estate agent. It communicates with custo
 
 ## 📸 Workflow Preview
 *(Upload your screenshot here to display the workflow visualization)*
-![Workflow Screenshot](<img width="1919" height="1026" alt="Screenshot 2026-02-22 165635" src="https://github.com/user-attachments/assets/f4a0c9c7-5d20-4ed4-9cfc-d4fedd6b92fd" />
-)
+![Workflow Screenshot] 
+---<img width="1919" height="1026" alt="Screenshot 2026-02-22 165635" src="https://github.com/user-attachments/assets/93c5e6e1-fbad-4d4f-93e4-cfd7de68e56f" />
 
----
